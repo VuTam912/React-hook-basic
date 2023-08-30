@@ -4,6 +4,7 @@ import Nav from './views/Nav';
 import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
 import Covid from './views/Covid';
+import { Countdown, NewCountDown } from './views/Countdown';
 
 // useEffect => Similar to componentDidMount and componentDidUpdate. Khi render component xong nó sẽ tự động thực thị ở trong useEffect (có thể sử dụng nhiều lần thay vì 1 lần)
 
@@ -26,11 +27,11 @@ const App = () => {
 	// componentDidMount va componentDidUpdate đã gộp chung vào với nhau khi dùng useEffect
 	useEffect(() => {
 		console.log('run use Effect');
-	}, [address]); //[] chay 1 lan duy nhat
+	}, [address]); //[address] => nếu nhận được giá trị adress thay đổi thì effect sẽ kích hoạt chạy
 
 	useEffect(() => {
 		console.log('run use Effect todo');
-	}, [todos]); //[] chay 1 lan duy nhat
+	}, [todos]); //[address] => nếu nhận được giá trị todos như xóa/add..  thay đổi thì effect sẽ kích hoạt chạy
 
 	const handleEventClick = (event) => {
 		// console.log(address);
@@ -60,11 +61,20 @@ const App = () => {
 		setTodos(currentTodos);
 	};
 
+	const onTimeup = () => {
+		alert('Times up');
+	};
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
 				<Nav />
 				<img src={logo} className='App-logo' alt='logo' />
+
+				<Countdown onTimeup={onTimeup} />
+				<span>------------------</span>
+				<NewCountDown onTimeup={onTimeup} />
+
 				<p>Hello world from ReactJS and {name}!</p>
 				<Covid />
 				{/* readOnly => fix error log for input */}
