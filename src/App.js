@@ -1,8 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Nav from './views/Nav';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
+import Covid from './views/Covid';
+
+// useEffect => Similar to componentDidMount and componentDidUpdate. Khi render component xong nó sẽ tự động thực thị ở trong useEffect (có thể sử dụng nhiều lần thay vì 1 lần)
 
 const App = () => {
 	// useState('Alphonse Eric'); gia tri bien init (khoi tao)
@@ -18,6 +21,16 @@ const App = () => {
 		{ id: 'todo3', title: 'BatMan', type: 'al' },
 		{ id: 'todo4', title: 'Reading books', type: 'eric' },
 	]);
+
+	// execute when render component load done.
+	// componentDidMount va componentDidUpdate đã gộp chung vào với nhau khi dùng useEffect
+	useEffect(() => {
+		console.log('run use Effect');
+	}, [address]); //[] chay 1 lan duy nhat
+
+	useEffect(() => {
+		console.log('run use Effect todo');
+	}, [todos]); //[] chay 1 lan duy nhat
 
 	const handleEventClick = (event) => {
 		// console.log(address);
@@ -53,8 +66,9 @@ const App = () => {
 				<Nav />
 				<img src={logo} className='App-logo' alt='logo' />
 				<p>Hello world from ReactJS and {name}!</p>
+				<Covid />
 				{/* readOnly => fix error log for input */}
-				<Todo
+				{/* <Todo
 					todos={todos}
 					title={'All todos'}
 					deleteDataTodo={deleteDataTodo}
@@ -71,7 +85,7 @@ const App = () => {
 				/>
 				<button type='button' onClick={(event) => handleEventClick(event)}>
 					Click me
-				</button>
+				</button> */}
 			</header>
 		</div>
 	);
