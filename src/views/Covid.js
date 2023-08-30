@@ -1,40 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useFetch from '../customize/fetch';
 
 const Covid = () => {
-	// useState = setState...
-	// setDataCovid = cap nhap thay doi cua dataCovid
-	const [dataCovid, setDataCovid] = useState([]);
+	// 'https://jsonplaceholder.typicode.com/comments' - API
 
-	// su ly thay doi loading
-	const [isLoading, setIsLoading] = useState(true);
-	// catch Error
-	const [isError, setIsError] = useState(false); // fasle = not error , true = error
-
-	// componentDidMount
-	useEffect(async () => {
-		setTimeout(async () => {
-			try {
-				// Call API - https://jsonplaceholder.typicode.com/ - (API FREE)
-				let res = await axios.get(
-					'https://jsonplaceholder.typicode.com/comments'
-				);
-				let data = res && res.data ? res.data : [];
-
-				// chi lay 20 data trong data API - > cut from 0 to 20
-				data = data.slice(0, 20);
-
-				// Cap nhap data vao bien dataCovid
-				setDataCovid(data);
-				setIsLoading(false); // turn off isLoading
-				setIsError(false); // API chay thanh cong va khong co error
-			} catch (e) {
-				setIsError(true); // co error
-				setIsLoading(false); // turn off isLoading
-				// alert(e.name + ' : ' + e.message);
-			}
-		}, 2000);
-	}, []);
+	const {
+		data: dataCovid,
+		isLoading,
+		isError,
+	} = useFetch('https://jsonplaceholder.typicode.com/comments');
 
 	return (
 		<>
