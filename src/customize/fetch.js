@@ -34,7 +34,7 @@ const useFetch = (url) => {
 			setIsLoading(false); // turn off isLoading
 			// alert(e.name + ' : ' + e.message);
 		}
-	}, []);
+	}, [url]); // neu APi co su thay doi thi effect sẽ activated
 
 	return { data, isLoading, isError };
 };
