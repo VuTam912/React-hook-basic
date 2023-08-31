@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
 import Covid from './views/Covid';
 import { Countdown, NewCountDown } from './views/Countdown';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 // useEffect => Similar to componentDidMount and componentDidUpdate. Khi render component xong nó sẽ tự động thực thị ở trong useEffect (có thể sử dụng nhiều lần thay vì 1 lần)
 
@@ -66,38 +67,48 @@ const App = () => {
 	};
 
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<Nav />
-				<img src={logo} className='App-logo' alt='logo' />
-
-				<Countdown onTimeup={onTimeup} />
-				<span>------------------</span>
-				<NewCountDown onTimeup={onTimeup} />
-
-				<p>Hello world from ReactJS and {name}!</p>
-				<Covid />
-				{/* readOnly => fix error log for input */}
-				{/* <Todo
-					todos={todos}
-					title={'All todos'}
-					deleteDataTodo={deleteDataTodo}
-				/>
-				<Todo
-					todos={todos.filter((item) => item.type === 'eric')}
-					title={'All todos - Eric'}
-					deleteDataTodo={deleteDataTodo}
-				/>
-				<input
-					type='text'
-					value={address}
-					onChange={(event) => handleOnChangeInput(event)}
-				/>
-				<button type='button' onClick={(event) => handleEventClick(event)}>
-					Click me
-				</button> */}
-			</header>
-		</div>
+		<Router>
+			<div className='App'>
+				<header className='App-header'>
+					<Nav />
+					<img src={logo} className='App-logo' alt='logo' />
+					<Switch>
+						<Route path='/' exact>
+							<p>Hello world from ReactJS and {name}!</p>
+							<Covid />
+						</Route>
+						<Route path='/timer'>
+							<Countdown onTimeup={onTimeup} />
+							<span>------------------</span>
+							<NewCountDown onTimeup={onTimeup} />
+						</Route>
+						<Route path='/todo'>
+							<Todo
+								todos={todos}
+								title={'All todos'}
+								deleteDataTodo={deleteDataTodo}
+							/>
+							<Todo
+								todos={todos.filter((item) => item.type === 'eric')}
+								title={'All todos - Eric'}
+								deleteDataTodo={deleteDataTodo}
+							/>
+							<input
+								type='text'
+								value={address}
+								onChange={(event) => handleOnChangeInput(event)}
+							/>
+							<button
+								type='button'
+								onClick={(event) => handleEventClick(event)}
+							>
+								Click me
+							</button>
+						</Route>
+					</Switch>
+				</header>
+			</div>
+		</Router>
 	);
 };
 
