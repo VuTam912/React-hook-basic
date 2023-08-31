@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Cho phep tai su dung nhieu lan khi co API khac
+
 const useFetch = (url) => {
 	// useState = setState...
 	// setDataCovid = cap nhap thay doi cua dataCovid
@@ -23,9 +25,6 @@ const useFetch = (url) => {
 					cancelToken: ourRequest.token, // <-- 2nd step
 				});
 				let data = res && res.data ? res.data : []; // true/false
-
-				// chi lay/show 20 data trong data API - > cut from 0 to 20
-				data = data.slice(0, 20);
 
 				// Cap nhap data vao bien dataCovid
 				setData(data);

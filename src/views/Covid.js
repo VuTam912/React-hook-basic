@@ -11,6 +11,12 @@ const Covid = () => {
 		isError,
 	} = useFetch('https://jsonplaceholder.typicode.com/comments');
 
+	// lay khoang 20 data
+	let newData = [];
+	if (dataCovid && dataCovid.length > 0) {
+		newData = dataCovid.slice(0, 20);
+	}
+
 	return (
 		<>
 			<h3>typicode.com - comments:</h3>
@@ -25,9 +31,9 @@ const Covid = () => {
 				<tbody>
 					{/* isLoading là false nghĩa isLoading đã turn off */}
 					{isLoading === false &&
-						dataCovid &&
-						dataCovid.length > 0 &&
-						dataCovid.map((item) => {
+						newData &&
+						newData.length > 0 &&
+						newData.map((item) => {
 							return (
 								<tr key={item.id}>
 									<td>{item.id}</td>

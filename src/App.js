@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
 import Covid from './views/Covid';
 import { Countdown, NewCountDown } from './views/Countdown';
+import Blog from './views/Blog';
+import DetailBlog from './views/DetailBlog';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 // useEffect => Similar to componentDidMount and componentDidUpdate. Khi render component xong nó sẽ tự động thực thị ở trong useEffect (có thể sử dụng nhiều lần thay vì 1 lần)
@@ -104,6 +106,13 @@ const App = () => {
 							>
 								Click me
 							</button>
+						</Route>
+						{/* exact nếu URL có tham số */}
+						<Route path='/blog' exact>
+							<Blog />
+						</Route>
+						<Route path='/blog/:id'>
+							<DetailBlog />
 						</Route>
 					</Switch>
 				</header>
