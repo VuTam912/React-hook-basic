@@ -6,7 +6,14 @@ const AddNewBlog = () => {
 	const [content, setContent] = useState('');
 
 	const handleSubmitBtn = () => {
-		console.log('CHECK');
+		if (!title) {
+			alert('Empty title');
+			return;
+		}
+		if (!content) {
+			alert('Empty content');
+			return;
+		}
 	};
 
 	return (
