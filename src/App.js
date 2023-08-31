@@ -8,6 +8,7 @@ import { Countdown, NewCountDown } from './views/Countdown';
 import Blog from './views/Blog';
 import DetailBlog from './views/DetailBlog';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import AddNewBlog from './views/AddNewBlog';
 
 // useEffect => Similar to componentDidMount and componentDidUpdate. Khi render component xong nó sẽ tự động thực thị ở trong useEffect (có thể sử dụng nhiều lần thay vì 1 lần)
 
@@ -113,6 +114,9 @@ const App = () => {
 						</Route>
 						<Route path='/blog/:id'>
 							<DetailBlog />
+						</Route>
+						<Route path='/add-new-blog'>
+							<AddNewBlog />
 						</Route>
 					</Switch>
 				</header>
