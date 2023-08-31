@@ -6,6 +6,14 @@ class Countdown extends React.Component {
 		count: 60,
 	};
 
+	// vong đời kết thúc. tức là ko dùng component này nữa khi chuyển sang tab thì nên
+	// clearInterval timer
+	componentWillUnmount() {
+		if (this.timer) {
+			clearInterval(this.timer);
+		}
+	}
+
 	// Doi render xong thi Mount moi execute
 	componentDidMount() {
 		// sau 1s se log(ME)
@@ -58,6 +66,7 @@ const NewCountDown = (props) => {
 			setCount(count - 1);
 		}, 1000); // 1s delay
 
+		// simliar componentWillUnmount
 		return () => {
 			clearInterval(timer); // clear đi để timer ko được sinh ra nuẵ. count sẽ được cap nhap tu giảm đi
 		};
